@@ -43,3 +43,14 @@ class GeneradorReportes:
         productos = self.inventario.repositorio.obtener_todos()
         return min(productos, key=lambda p: p.precio) if productos else None
 
+def reporte_completo(self) -> Dict[str, Any]:
+        """Genera reporte completo del inventario."""
+        return {
+            "fecha_generacion": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "total_productos": self.cantidad_total_productos(),
+            "total_items": self.total_items_stock(),
+            "valor_total": self.valor_total_inventario(),
+            "producto_mas_caro": self.producto_mas_caro(),
+            "producto_mas_barato": self.producto_mas_barato(),
+            "productos_bajo_stock": self.inventario.obtener_productos_bajo_stock()
+        }
